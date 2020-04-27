@@ -1,4 +1,4 @@
-const LinearRegression = require("./index");
+import LinearRegression from "./index";
 
 test("conef: 1, intercept: 0", () => {
   const l = new LinearRegression();

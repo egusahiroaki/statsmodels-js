@@ -1,4 +1,4 @@
-const dot = require("./util");
+import dot from "./util";
 
 test("one dimensional array", () => {
   const actual = dot([1, 2], [3, 4]);

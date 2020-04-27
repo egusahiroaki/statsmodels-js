@@ -1,5 +1,5 @@
-const dot = require("./util");
-const _ = require("lodash");
+import dot from "./util";
+import _ from "lodash";
 
 class LinearRegression {
   constructor() {}
