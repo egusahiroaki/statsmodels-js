@@ -1,4 +1,5 @@
 import { SVD } from "svd-js";
+import { lusolve } from "mathjs";
 
 // With svd-js, error occurs when column number is over row number
 // In that case, transpose is used
@@ -6,7 +7,7 @@ import { SVD } from "svd-js";
 const matrixRank = (matrix) => {
   const rowNum = matrix.length;
   const colNum = matrix[0].length;
-  console.log(`rowNum: ${rowNum}, colnum: ${colNum}`);
+
   if (rowNum < colNum) {
     const transpose = (a) => a[0].map((_, c) => a.map((r) => r[c]));
     return SVD(transpose(matrix)).q.filter((val) => {
@@ -20,6 +21,8 @@ const matrixRank = (matrix) => {
 };
 
 // Solve a linear matrix equation, or system of linear scalar equations.
-const solve = () => {};
+const solve = (A, b) => {
+  return lusolve(A, b);
+};
 
-module.exports = matrixRank;
+module.exports = { matrixRank, solve };
