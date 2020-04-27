@@ -6,6 +6,14 @@ const dot = (m1, m2) => {
     var col1 = m1[0].length;
     var col2 = m2[0].length;
   
+    if(typeof m1[0][0] === 'undefined') {
+        let res = 0
+        for(let i = 0; i < row1; i++){
+            res += m1[i] * m2[i]
+        }
+        return res
+    }
+
     for(let i1 = 0; i1 < row1; i1++){
         res.push([]);
         for(let i2 = 0; i2 < col2; i2++){
