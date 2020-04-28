@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
-    "build": "npx webpack",
+    "build": "npx webpack --config ./webpack.config.js --mode=production",
     "dev": "npx webpack --watch"
   },
   "author": "egusahiroaki",
