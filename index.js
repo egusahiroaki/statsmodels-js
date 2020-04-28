@@ -31,9 +31,7 @@ class MultipleLinearRegression {
 
   fit() {
     const n = this._x.length;
-    for (let i = 0; i < n; i++) {
-      this._x[i].unshift(1);
-    }
+    _.map(this._x, (e) => e.unshift(1));
     const x = this._x;
     const a = dot(transpose(x), x);
     const b = dot(transpose(x), this._y);
