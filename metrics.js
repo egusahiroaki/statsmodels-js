@@ -22,4 +22,4 @@ const r2Score = (yTrue, yPred) => {
   );
 };
 
-module.exports = { meanSquaredError, r2Score };
+export { meanSquaredError, r2Score };

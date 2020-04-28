@@ -48,4 +48,4 @@ class MultipleLinearRegression {
   }
 }
 
-module.exports = { SimpleLinearRegression, MultipleLinearRegression };
+export { SimpleLinearRegression, MultipleLinearRegression };

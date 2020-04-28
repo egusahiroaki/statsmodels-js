@@ -25,4 +25,4 @@ const solve = (A, b) => {
   return lusolve(A, b);
 };
 
-module.exports = { matrixRank, solve };
+export { matrixRank, solve };
