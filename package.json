@@ -9,8 +9,8 @@
     "build": "npx webpack",
     "dev": "npx webpack --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "egusahiroaki",
+  "license": "MIT",
   "dependencies": {
     "eslint": "^6.8.0",
     "lodash": "^4.17.15",
