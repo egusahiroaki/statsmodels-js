@@ -1,5 +1,7 @@
 # statsmodels-js
-[![npm version](https://badge.fury.io/js/statsmodels-js.svg)](https://badge.fury.io/js/statsmodels-js)  [![Build Status](https://travis-ci.org/egusahiroaki/statsmodels-js.svg?branch=master)](https://travis-ci.org/egusahiroaki/statsmodels-js)
+[![npm version](https://badge.fury.io/js/statsmodels-js.svg)](https://badge.fury.io/js/statsmodels-js)  [![Build Status](https://travis-ci.org/egusahiroaki/statsmodels-js.svg?branch=master)](https://travis-ci.org/egusahiroaki/statsmodels-js) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+
+
 
 A JavaScript implementation of statistics methods.
 
