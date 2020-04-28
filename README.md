@@ -30,7 +30,7 @@ console.log(result.summary())
 ```
 
 ```javascript
-const Stats = require("./dist/index");
+const Stats = require("statsmodels-js");
 const x = [
   [10, 20, 30],
   [20, 42, 63],
