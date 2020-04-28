@@ -41,4 +41,6 @@ const dot = (m1, m2) => {
   return res;
 };
 
-module.exports = dot;
+const transpose = (a) => a[0].map((_, c) => a.map((r) => r[c]));
+
+module.exports = { dot, transpose };
