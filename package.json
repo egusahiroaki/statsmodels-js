@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "npm run build",
     "test": "jest",
     "build": "npx webpack",
     "dev": "npx webpack --watch"
