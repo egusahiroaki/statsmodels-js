@@ -19,6 +19,10 @@ describe("SimpleLinearRegression", () => {
       const yPred = result.predict([2, 4, 6]);
       expect(yPred).toEqual([2, 4, 6]);
     });
+
+    test("summary", () => {
+      expect(result.summary()).toEqual({ coef: 1, intercept: 0, r2Score: 1 });
+    });
   });
 
   describe("case 2", () => {
@@ -37,6 +41,14 @@ describe("SimpleLinearRegression", () => {
     test("predict", () => {
       const yPred = result.predict([2, 4, 6]);
       expect(yPred).toEqual([1.6666666666666665, 2.333333333333333, 3]);
+    });
+
+    test("summary", () => {
+      expect(result.summary()).toEqual({
+        coef: 0.3333333333333333,
+        intercept: 1,
+        r2Score: 1,
+      });
     });
   });
 
