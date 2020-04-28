@@ -2,20 +2,18 @@ import dot from "./util";
 import _ from "lodash";
 
 class LinearRegression {
-  constructor() {}
+  constructor(x, y) {
+    this._x = x;
+    this._y = y;
+  }
 
-  fit(x, y) {
-    const n = x.length;
+  fit() {
+    const n = this._x.length;
     const a =
-      (dot(x, y) - (_.sum(y) * _.sum(x)) / n) /
-      (_.sum(
-        _.map(x, (e) => {
-          return e * e;
-        })
-      ) -
-        Math.pow(_.sum(x), 2) / n);
+      (dot(this._x, this._y) - (_.sum(this._y) * _.sum(this._x)) / n) /
+      (_.sum(_.map(this._x, (e) => e * e)) - Math.pow(_.sum(this._x), 2) / n);
 
-    const b = (_.sum(y) - a * _.sum(x)) / n;
+    const b = (_.sum(this._y) - a * _.sum(this._x)) / n;
     return {
       coef: a,
       intercept: b,
