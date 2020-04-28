@@ -2,33 +2,45 @@ import { SimpleLinearRegression, MultipleLinearRegression } from "./index";
 import _ from "lodash";
 
 describe("SimpleLinearRegression", () => {
-  test("coef: 1, intercept: 0", () => {
+  describe("case 1", () => {
     const x = [1, 2, 3];
     const y = [1, 2, 3];
+    const result = new SimpleLinearRegression(x, y).fit();
+    test("coef: 1, intercept: 0", () => {
+      const coef = result.coef;
+      const intercept = result.intercept;
+      expect({ coef, intercept }).toEqual({
+        coef: 1,
+        intercept: 0,
+      });
+    });
 
-    expect(new SimpleLinearRegression(x, y).fit()).toEqual({
-      coef: 1,
-      intercept: 0,
+    test("predict", () => {
+      const yPred = result.predict([2, 4, 6]);
+      expect(yPred).toEqual([2, 4, 6]);
     });
   });
 
-  test("coef: 1/3, intercept: 1", () => {
+  describe("case 2", () => {
     const x = [0, 3, 6];
     const y = [1, 2, 3];
-    expect(new SimpleLinearRegression(x, y).fit()).toEqual({
-      coef: 1 / 3,
-      intercept: 1,
+    const result = new SimpleLinearRegression(x, y).fit();
+    test("coef: 1/3, intercept: 1", () => {
+      const coef = result.coef;
+      const intercept = result.intercept;
+      expect({ coef, intercept }).toEqual({
+        coef: 1 / 3,
+        intercept: 1,
+      });
+    });
+
+    test("predict", () => {
+      const yPred = result.predict([2, 4, 6]);
+      expect(yPred).toEqual([1.6666666666666665, 2.333333333333333, 3]);
     });
   });
 
-  test("boston data coef =  9.1021089 intercept = -34.6706207764", () => {
-    /*
-    from sklearn.linear_model import LinearRegression
-    lr = LinearRegression()
-    
-    x = boston_df['RM'].values         # 説明変数（Numpyの配列）
-    y = boston_df['MEDV'].values 
-    */
+  describe("case 3", () => {
     const x = [
       6.575,
       6.421,
@@ -1048,9 +1060,19 @@ describe("SimpleLinearRegression", () => {
     const actual = new SimpleLinearRegression(x, y).fit();
     const coef = _.ceil(actual.coef, 7);
     const intercept = _.ceil(actual.intercept, 7);
-    expect({ coef, intercept }).toEqual({
-      coef: _.ceil(9.10210898118031, 7), // output by sklearn
-      intercept: _.ceil(-34.67062077643857, 7),
+
+    test("boston data coef =  9.1021089 intercept = -34.6706207764", () => {
+      /*
+      from sklearn.linear_model import LinearRegression
+      lr = LinearRegression()
+      
+      x = boston_df['RM'].values         # 説明変数（Numpyの配列）
+      y = boston_df['MEDV'].values 
+      */
+      expect({ coef, intercept }).toEqual({
+        coef: _.ceil(9.10210898118031, 7), // output by sklearn
+        intercept: _.ceil(-34.67062077643857, 7),
+      });
     });
   });
 });

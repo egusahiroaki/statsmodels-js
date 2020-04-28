@@ -1,6 +1,7 @@
 import { dot, transpose } from "./util";
 import _ from "lodash";
 import { solve } from "./linalg";
+import { r2Score } from "./metrics";
 
 class SimpleLinearRegression {
   constructor(x, y) {
@@ -10,14 +11,26 @@ class SimpleLinearRegression {
 
   fit() {
     const n = this._x.length;
-    const a =
+    this.coef =
       (dot(this._x, this._y) - (_.sum(this._y) * _.sum(this._x)) / n) /
       (_.sum(_.map(this._x, (e) => e * e)) - Math.pow(_.sum(this._x), 2) / n);
 
-    const b = (_.sum(this._y) - a * _.sum(this._x)) / n;
+    this.intercept = (_.sum(this._y) - this.coef * _.sum(this._x)) / n;
+
+    return this;
+  }
+
+  predict(x) {
+    return _.map(x, (e) => this.coef * e + this.intercept);
+  }
+
+  summary() {
+    const yPred = this.predict(this._x);
+    const r2 = r2Score(this._y, yPred);
     return {
-      coef: a,
-      intercept: b,
+      r2Score: r2,
+      coef: this.coef,
+      intercept: this.intercept,
     };
   }
 }
