@@ -1184,4 +1184,25 @@ describe("MultipleLinearRegression", () => {
       expect(reg.predict(predictX)).toEqual(expected);
     });
   });
+
+  describe("summary", () => {
+    test("", () => {
+      const x = [
+        [10, 20, 30],
+        [20, 42, 63],
+        [4, 8, 16],
+      ];
+      const y = [1, 2, 3];
+      const reg = new MultipleLinearRegression(x, y).fit();
+
+      const expected = {
+        intercept: 0.3717447916666898,
+        r2: 1,
+        x1: -0.3089192708334065,
+        x2: -0.7054850260416322,
+        x3: 0.59423828125,
+      };
+      expect(reg.summary()).toEqual(expected);
+    });
+  });
 });
