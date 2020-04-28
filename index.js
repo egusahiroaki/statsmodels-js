@@ -38,6 +38,14 @@ class MultipleLinearRegression {
     this._w = solve(a, b);
     return this._w;
   }
+
+  predict(x) {
+    if (typeof x[0][0] === "undefined") {
+      x = [x];
+    }
+    _.map(this._x, (e) => e.unshift(1));
+    return dot(x, this._w);
+  }
 }
 
 module.exports = { SimpleLinearRegression, MultipleLinearRegression };

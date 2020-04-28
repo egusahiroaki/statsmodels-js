@@ -38,4 +38,37 @@ describe("MultipleLinearRegression", () => {
 
     expect(new MultipleLinearRegression(x, y).fit()).toEqual(expected);
   });
+
+  test("", () => {
+    const x = [
+      [10, 20, 30],
+      [20, 42, 63],
+      [4, 8, 16],
+    ];
+    const y = [1, 2, 3];
+    const predictX = [10, 20, 30];
+    const reg = new MultipleLinearRegression(x, y);
+    reg.fit();
+    const expected = [[-23.6254882812502]];
+
+    expect(reg.predict(predictX)).toEqual(expected);
+  });
+
+  test("", () => {
+    const x = [
+      [10, 20, 30],
+      [20, 42, 63],
+      [4, 8, 16],
+    ];
+    const y = [1, 2, 3];
+    const predictX = [
+      [10, 20, 30],
+      [20, 42, 63],
+    ];
+    const reg = new MultipleLinearRegression(x, y);
+    reg.fit();
+    const expected = [[-23.6254882812502], [-49.98527018229211]];
+
+    expect(reg.predict(predictX)).toEqual(expected);
+  });
 });
