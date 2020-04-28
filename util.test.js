@@ -6,6 +6,19 @@ test("one dimensional array", () => {
   expect(actual).toEqual(expected);
 });
 
+test("one dimensional array", () => {
+  const actual = dot(
+    [
+      [1, 1],
+      [10, 12],
+      [11, 13],
+    ],
+    [1, 2]
+  );
+  const expected = [3, 34, 37];
+  expect(actual).toEqual(expected);
+});
+
 test("two dimensional array", () => {
   const actual = dot(
     [

@@ -1,20 +1,34 @@
-import SimpleLinearRegression from "./index";
+import { SimpleLinearRegression, MultipleLinearRegression } from "./index";
 
-test("conef: 1, intercept: 0", () => {
-  const x = [1, 2, 3];
-  const y = [1, 2, 3];
+describe("SimpleLinearRegression", () => {
+  test("conef: 1, intercept: 0", () => {
+    const x = [1, 2, 3];
+    const y = [1, 2, 3];
 
-  expect(new SimpleLinearRegression(x, y).fit()).toEqual({
-    coef: 1,
-    intercept: 0,
+    expect(new SimpleLinearRegression(x, y).fit()).toEqual({
+      coef: 1,
+      intercept: 0,
+    });
+  });
+
+  test("conef: 1/3, intercept: 1", () => {
+    const x = [0, 3, 6];
+    const y = [1, 2, 3];
+    expect(new SimpleLinearRegression(x, y).fit()).toEqual({
+      coef: 1 / 3,
+      intercept: 1,
+    });
   });
 });
 
-test("conef: 1/3, intercept: 1", () => {
-  const x = [0, 3, 6];
-  const y = [1, 2, 3];
-  expect(new SimpleLinearRegression(x, y).fit()).toEqual({
-    coef: 1 / 3,
-    intercept: 1,
+describe("MultipleLinearRegression", () => {
+  test("conef: 1, intercept: 0", () => {
+    const x = [[1], [2], [3]];
+    const y = [1, 2, 3];
+
+    expect(new MultipeRegression(x, y).fit()).toEqual({
+      coef: [1],
+      intercept: 0,
+    });
   });
 });
