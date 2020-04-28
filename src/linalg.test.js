@@ -10,12 +10,12 @@ describe("matrixRank", () => {
 
     expect(matrixRank(a)).toEqual(3);
   });
-
+  
   test("", () => {
     const a = [
-      [1, 1, 4, 1],
-      [0, 3, 1, 1],
-      [0, 6, 2, 2],
+      [1, 1],
+      [0, 3],
+      [0, 6],
     ];
 
     expect(matrixRank(a)).toEqual(2);
