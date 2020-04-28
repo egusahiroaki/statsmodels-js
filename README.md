@@ -47,7 +47,7 @@ console.log(result.summary());
   x2: -14.610026041665915,
   x3: 11.98828125,
   intercept: 16.74479166666713,
-  r2: 1
+  r2Score: 1
 }
 */
 ```
