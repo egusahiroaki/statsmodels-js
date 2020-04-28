@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "npx webpack",
+    "dev": "npx webpack --watch"
   },
   "author": "",
   "license": "ISC",
