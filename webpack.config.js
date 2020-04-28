@@ -1,10 +1,10 @@
 module.exports = {
   mode: "development",
   devtool: "source-map",
-  entry: ["@babel/polyfill", "./main.js"], // polyfill はIE11などで必要
+  entry: ["@babel/polyfill", "./src/index.js"],
   output: {
     path: `${__dirname}/dist`,
-    filename: "bundle.js",
+    filename: "index.js",
     library: 'Stats',
     libraryTarget: 'umd',
   },
