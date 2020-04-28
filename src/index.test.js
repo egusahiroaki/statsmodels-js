@@ -1078,21 +1078,76 @@ describe("SimpleLinearRegression", () => {
 });
 
 describe("MultipleLinearRegression", () => {
-  test("", () => {
-    const x = [
-      [10, 20, 30],
-      [20, 42, 63],
-      [4, 8, 16],
-    ];
-    const y = [1, 2, 3];
-    const expected = [
-      [0.3717447916666898],
-      [-0.3089192708334065],
-      [-0.7054850260416322],
-      [0.59423828125],
-    ];
+  describe("multi-colinearlity", () => {
+    test("exists", () => {
+      const x = [
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3],
+      ];
+      const y = [2, 3, 6];
+      const mlr = new MultipleLinearRegression(x, y);
 
-    expect(new MultipleLinearRegression(x, y).fit()).toEqual(expected);
+      expect(mlr._hasMultiCo).toEqual(true);
+    });
+
+    test("doesn't exist", () => {
+      const x = [
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 4, 3],
+      ];
+      const y = [2, 3, 6];
+      const mlr = new MultipleLinearRegression(x, y);
+
+      expect(mlr._hasMultiCo).toEqual(false);
+    });
+  });
+
+  describe("multi-colinearlity, every variable should have coefficients", () => {
+    test("case 1", () => {
+      const x = [
+        [1, 1],
+        [2, 2],
+        [3, 3],
+      ];
+      const y = [2, 3, 6];
+      const result = new MultipleLinearRegression(x, y).fit();
+
+      const expected = [[-0.3333333333333333], [1], [1]];
+
+      expect(result._w).toEqual(expected);
+    });
+
+    test("case 2", () => {
+      const x = [
+        [1, 1, 1],
+        [2, 2, 2],
+        [3, 3, 3],
+      ];
+      const y = [2, 3, 3];
+      const result = new MultipleLinearRegression(x, y).fit();
+
+      const expected = [
+        [1.6666666666666667],
+        [0.16666666666666666],
+        [0.16666666666666666],
+        [0.16666666666666666],
+      ];
+      expect(result._w).toEqual(expected);
+    });
+  });
+
+  test("not multi-colinearlity", () => {
+    const x = [
+      [1, 1],
+      [2, 2],
+      [3, 2],
+    ];
+    const y = [2, 3, 6];
+    const result = new MultipleLinearRegression(x, y).fit();
+    const expected = [[1], [3], [-2]];
+    expect(result._w).toEqual(expected);
   });
 
   test("", () => {

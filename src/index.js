@@ -1,4 +1,4 @@
-import { dot, transpose } from "./util";
+import { dot, transpose, hasEverySameArray } from "./util";
 import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
@@ -40,6 +40,10 @@ class MultipleLinearRegression {
     this._x = x;
     this._y = y;
     this._w = null;
+
+    // check multi-colinearlity
+    const t = transpose(this._x);
+    this._hasMultiCo = hasEverySameArray(t);
   }
 
   fit() {
@@ -49,7 +53,25 @@ class MultipleLinearRegression {
     const a = dot(transpose(x), x);
     const b = dot(transpose(x), this._y);
     this._w = solve(a, b);
-    return this._w;
+
+    // if multi-colinearlity, top coef is distributed into every coef
+    this.intercept = this._w[0][0];
+    if (this._hasMultiCo) {
+      // TODO: refactor
+      const weight = this._w[1][0];
+      const dividedW = weight / (x[0].length - 1);
+      let updateW = [[this.intercept]];
+      for (let i = 1; i < this._w.length; i++) {
+        updateW.push([dividedW]);
+      }
+      this._w = updateW;
+    }
+
+    // dynamic coefficient variable
+    _.each(this._w.slice(1, this._w.length), (e, i) =>
+      eval("this.x" + parseInt(i + 1) + "= e[0]")
+    );
+    return this;
   }
 
   predict(x) {
