@@ -1,7 +1,7 @@
 import dot from "./util";
 import _ from "lodash";
 
-class LinearRegression {
+class SimpleLinearRegression {
   constructor(x, y) {
     this._x = x;
     this._y = y;
@@ -21,4 +21,4 @@ class LinearRegression {
   }
 }
 
-module.exports = LinearRegression;
+module.exports = SimpleLinearRegression;
