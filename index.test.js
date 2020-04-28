@@ -22,6 +22,13 @@ describe("SimpleLinearRegression", () => {
   });
 
   test("boston data coef =  9.1021089 intercept = -34.6706207764", () => {
+    /*
+    from sklearn.linear_model import LinearRegression
+    lr = LinearRegression()
+    
+    x = boston_df['RM'].values         # 説明変数（Numpyの配列）
+    y = boston_df['MEDV'].values 
+    */
     const x = [
       6.575,
       6.421,
