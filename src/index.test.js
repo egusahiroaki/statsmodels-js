@@ -1150,36 +1150,38 @@ describe("MultipleLinearRegression", () => {
     expect(result._w).toEqual(expected);
   });
 
-  test("", () => {
-    const x = [
-      [10, 20, 30],
-      [20, 42, 63],
-      [4, 8, 16],
-    ];
-    const y = [1, 2, 3];
-    const predictX = [10, 20, 30];
-    const reg = new MultipleLinearRegression(x, y);
-    reg.fit();
-    const expected = [[0.9999999999999787]];
+  describe("predict", () => {
+    test("", () => {
+      const x = [
+        [10, 20, 30],
+        [20, 42, 63],
+        [4, 8, 16],
+      ];
+      const y = [1, 2, 3];
+      const predictX = [10, 20, 30];
+      const reg = new MultipleLinearRegression(x, y);
+      reg.fit();
+      const expected = [[0.9999999999999787]];
 
-    expect(reg.predict(predictX)).toEqual(expected);
-  });
+      expect(reg.predict(predictX)).toEqual(expected);
+    });
 
-  test("", () => {
-    const x = [
-      [10, 20, 30],
-      [20, 42, 63],
-      [4, 8, 16],
-    ];
-    const y = [1, 2, 3];
-    const predictX = [
-      [10, 20, 30],
-      [20, 42, 63],
-    ];
-    const reg = new MultipleLinearRegression(x, y);
-    reg.fit();
-    const expected = [[0.9999999999999787], [2.000000000000007]];
+    test("", () => {
+      const x = [
+        [10, 20, 30],
+        [20, 42, 63],
+        [4, 8, 16],
+      ];
+      const y = [1, 2, 3];
+      const predictX = [
+        [10, 20, 30],
+        [20, 42, 63],
+      ];
+      const reg = new MultipleLinearRegression(x, y);
+      reg.fit();
+      const expected = [[0.9999999999999787], [2.000000000000007]];
 
-    expect(reg.predict(predictX)).toEqual(expected);
+      expect(reg.predict(predictX)).toEqual(expected);
+    });
   });
 });
