@@ -1,4 +1,4 @@
-import dot from "./util";
+import { dot, transpose } from "./util";
 import _ from "lodash";
 import { solve } from "./linalg";
 
@@ -35,7 +35,6 @@ class MultipleLinearRegression {
       this._x[i].unshift(1);
     }
     const x = this._x;
-    const transpose = (a) => a[0].map((_, c) => a.map((r) => r[c]));
     const a = dot(transpose(x), x);
     const b = dot(transpose(x), this._y);
     this._w = solve(a, b);
