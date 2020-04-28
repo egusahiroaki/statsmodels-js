@@ -49,7 +49,7 @@ describe("MultipleLinearRegression", () => {
     const predictX = [10, 20, 30];
     const reg = new MultipleLinearRegression(x, y);
     reg.fit();
-    const expected = [[-23.6254882812502]];
+    const expected = [[0.9999999999999787]];
 
     expect(reg.predict(predictX)).toEqual(expected);
   });
@@ -67,7 +67,7 @@ describe("MultipleLinearRegression", () => {
     ];
     const reg = new MultipleLinearRegression(x, y);
     reg.fit();
-    const expected = [[-23.6254882812502], [-49.98527018229211]];
+    const expected = [[0.9999999999999787], [2.000000000000007]];
 
     expect(reg.predict(predictX)).toEqual(expected);
   });
