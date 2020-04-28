@@ -43,4 +43,16 @@ const dot = (m1, m2) => {
 
 const transpose = (a) => a[0].map((_, c) => a.map((r) => r[c]));
 
-export { dot, transpose };
+const hasEverySameArray = (a) => {
+  const baseArr = a[0];
+
+  let count = 0;
+  for (let i = 1; i < a.length; i++) {
+    if (JSON.stringify(baseArr) == JSON.stringify(a[i])) {
+      count += 1;
+    }
+  }
+  return count === a.length - 1;
+};
+
+export { dot, transpose, hasEverySameArray };
