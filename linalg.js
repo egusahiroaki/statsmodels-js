@@ -1,3 +1,4 @@
+import { transpose } from "./util";
 import { SVD } from "svd-js";
 import { lusolve } from "mathjs";
 
@@ -9,7 +10,6 @@ const matrixRank = (matrix) => {
   const colNum = matrix[0].length;
 
   if (rowNum < colNum) {
-    const transpose = (a) => a[0].map((_, c) => a.map((r) => r[c]));
     return SVD(transpose(matrix)).q.filter((val) => {
       return val !== 0;
     }).length;
