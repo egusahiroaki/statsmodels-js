@@ -94,7 +94,7 @@ class MultipleLinearRegression {
     // dynamic coefficient variable
     Object.assign(summary, this._xs);
     summary["intercept"] = this.intercept;
-    summary["r2"] = r2;
+    summary["r2Score"] = r2;
 
     return summary;
   }

@@ -1209,7 +1209,7 @@ describe("MultipleLinearRegression", () => {
 
       const expected = {
         intercept: 0.3717447916666898,
-        r2: 1,
+        r2Score: 1,
         x1: -0.3089192708334065,
         x2: -0.7054850260416322,
         x3: 0.59423828125,

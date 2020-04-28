@@ -18,16 +18,36 @@ const Stats = require("statsmodels-js");
 const x = [1, 2, 3];
 const y = [3, 5, 7];
 
-const result = new Stats.SimpleLinearRegression(x, y).fit()
-console.log(result1)
-// { coef: 2, intercept: 1 }
+const result = new Stats.SimpleLinearRegression(x, y).fit();
+console.log(result.summary())
+/*
+{
+  r2Score: 0.9642857142857142,
+  coef: 1.5,
+  intercept: 0.3333333333333333
+}
+*/
 ```
 
 ```javascript
-const x = [[1], [2], [3]];
+const Stats = require("./dist/index");
+const x = [
+  [10, 20, 30],
+  [20, 42, 63],
+  [4, 8, 16],
+];
 const y = [30, 50, 70];
 
-const result = new Stats.MultipleLinearRegression(x, y).fit()
-console.log(result)
-// [ [ 10 ], [ 20 ] ] first element is intercept, and the elements for the second and subsequent are coefficients.
+const result = new Stats.MultipleLinearRegression(x, y).fit();
+console.log(result.summary());
+
+/*
+{
+  x1: -5.419270833334926,
+  x2: -14.610026041665915,
+  x3: 11.98828125,
+  intercept: 16.74479166666713,
+  r2: 1
+}
+*/
 ```
