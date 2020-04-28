@@ -5,9 +5,9 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     filename: "index.js",
-    library: 'Stats',
-    libraryTarget: 'umd',
-    globalObject: 'typeof self !== \'undefined\' ? self : this', // https://github.com/webpack/webpack/issues/6522#issuecomment-371120689
+    library: "Stats",
+    libraryTarget: "umd",
+    globalObject: "typeof self !== 'undefined' ? self : this", // https://github.com/webpack/webpack/issues/6522#issuecomment-371120689
   },
   module: {
     rules: [

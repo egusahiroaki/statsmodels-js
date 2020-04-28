@@ -4,14 +4,14 @@ module.exports = {
       "@babel/preset-env",
       {
         useBuiltIns: "entry",
-        corejs: 3
+        corejs: 3,
       },
     ],
   ],
   env: {
     // exec when env is test
     test: {
-        presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
+      presets: [["@babel/preset-env", { targets: { node: "current" } }]],
     },
-},
+  },
 };
