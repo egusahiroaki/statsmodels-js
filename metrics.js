@@ -11,6 +11,7 @@ const meanSquaredError = (yTrue, yPred, options = { squared: true }) => {
   return options.squared ? result : Math.sqrt(result);
 };
 
+// R^2 (coefficient of determination) regression score function.
 const r2Score = (yTrue, yPred) => {
   // actual data average
   const y_ = _.sum(yTrue) / yTrue.length;
