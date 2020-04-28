@@ -1,7 +1,7 @@
 {
-  "name": "noname",
-  "version": "1.0.0",
-  "description": "",
+  "name": "statistics-js",
+  "version": "0.1.0",
+  "description": "basic statistics library.",
   "main": "index.js",
   "scripts": {
     "prepare": "npm run build",
