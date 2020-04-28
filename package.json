@@ -1,5 +1,5 @@
 {
-  "name": "statistics-js",
+  "name": "stat-js",
   "version": "0.1.0",
   "description": "basic statistics library.",
   "main": "index.js",
