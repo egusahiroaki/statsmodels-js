@@ -67,10 +67,13 @@ class MultipleLinearRegression {
       this._w = updateW;
     }
 
+    let xs = {};
     // dynamic coefficient variable
     _.each(this._w.slice(1, this._w.length), (e, i) =>
-      eval("this.x" + parseInt(i + 1) + "= e[0]")
+      eval("xs['x" + parseInt(i + 1) + "'] = e[0]")
     );
+    this._xs = xs; // used in summary()
+    Object.assign(this, xs);
     return this;
   }
 
@@ -89,10 +92,7 @@ class MultipleLinearRegression {
     const r2 = r2Score(this._y, yPred);
     let summary = {};
     // dynamic coefficient variable
-    _.each(this._w.slice(1, this._w.length), (e, i) =>
-      eval("summary['x" + parseInt(i + 1) + "'] = this.x" + parseInt(i + 1))
-    );
-
+    Object.assign(summary, this._xs);
     summary["intercept"] = this.intercept;
     summary["r2"] = r2;
 
