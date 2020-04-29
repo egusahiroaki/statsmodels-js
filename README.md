@@ -1,5 +1,5 @@
 # statsmodels-js
-[![npm version](https://badge.fury.io/js/statsmodels-js.svg)](https://badge.fury.io/js/statsmodels-js)  [![Build Status](https://travis-ci.org/egusahiroaki/statsmodels-js.svg?branch=master)](https://travis-ci.org/egusahiroaki/statsmodels-js) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+[![npm version](https://badge.fury.io/js/statsmodels-js.svg)](https://badge.fury.io/js/statsmodels-js)  [![Build Status](https://travis-ci.org/egusahiroaki/statsmodels-js.svg?branch=master)](https://travis-ci.org/egusahiroaki/statsmodels-js) [![Coverage Status](https://coveralls.io/repos/github/egusahiroaki/statsmodels-js/badge.svg?branch=master)](https://coveralls.io/github/egusahiroaki/statsmodels-js?branch=master) ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg) 
 
 
 
