@@ -1,4 +1,10 @@
-import { dot, transpose, hasEverySameArray } from "./util";
+import {
+  dot,
+  transpose,
+  hasEverySameArray,
+  unitMatrix,
+  matrixAdd,
+} from "./util";
 import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
@@ -100,4 +106,31 @@ class MultipleLinearRegression {
   }
 }
 
-export { SimpleLinearRegression, MultipleLinearRegression };
+class RidgeRegression {
+  constructor(x, y, lambda = 1) {
+    this._x = x;
+    this._y = y;
+    this._w = null;
+    this._lambda = lambda;
+  }
+
+  fit() {
+    const n = this._x.length;
+    _.map(this._x, (e) => e.unshift(1));
+    const x = this._x;
+
+    const a = matrixAdd(
+      dot(transpose(x), x),
+      unitMatrix(x[0].length, this._lambda)
+    );
+    const b = dot(transpose(x), this._y);
+    console.log(a);
+    console.log(b);
+    this._w = solve(a, b);
+    console.log(this._w); // intercept, coefficient
+
+    return this;
+  }
+}
+
+export { SimpleLinearRegression, MultipleLinearRegression, RidgeRegression };

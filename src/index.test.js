@@ -1,4 +1,8 @@
-import { SimpleLinearRegression, MultipleLinearRegression } from "./index";
+import {
+  SimpleLinearRegression,
+  MultipleLinearRegression,
+  RidgeRegression,
+} from "./index";
 import _ from "lodash";
 
 describe("SimpleLinearRegression", () => {
@@ -1216,5 +1220,15 @@ describe("MultipleLinearRegression", () => {
       };
       expect(reg.summary()).toEqual(expected);
     });
+  });
+});
+
+describe("RidgeRegression", () => {
+  test("", () => {
+    const x = [[4], [9], [12]];
+    const y = [1, 2, 3];
+    const reg = new RidgeRegression(x, y).fit();
+    const expected = [[0.005830903790087803], [0.23906705539358597]];
+    expect(reg._w).toEqual(expected);
   });
 });
