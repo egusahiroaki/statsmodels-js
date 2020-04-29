@@ -10,7 +10,7 @@ describe("matrixRank", () => {
 
     expect(matrixRank(a)).toEqual(3);
   });
-  
+
   test("", () => {
     const a = [
       [1, 1],
