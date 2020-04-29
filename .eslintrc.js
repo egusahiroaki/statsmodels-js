@@ -1,9 +1,15 @@
 module.exports = {
     env: {
-        node: true
+        node: true,
+        browser : true,
+        jest: true,
     },
-    plugins: ["prettier"],
+    plugins: [
+        "prettier",
+        "jest"
+    ],
     extends: [
+        "eslint:recommended",
         "plugin:prettier/recommended"
     ],
     parserOptions: {
