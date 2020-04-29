@@ -54,6 +54,8 @@ class MultipleLinearRegression {
 
   fit() {
     const n = this._x.length;
+
+    // destructive change
     _.map(this._x, (e) => e.unshift(1));
     const x = this._x;
     const a = dot(transpose(x), x);
@@ -116,6 +118,8 @@ class RidgeRegression {
 
   fit() {
     const n = this._x.length;
+
+    // destructive change
     _.map(this._x, (e) => e.unshift(1));
     const x = this._x;
 
@@ -127,6 +131,12 @@ class RidgeRegression {
     this._w = solve(a, b); // intercept, coefficient
 
     return this;
+  }
+
+  predict(x) {
+    // destructive change
+    _.map(x, (e) => e.unshift(1));
+    return dot(x, this._w);
   }
 }
 
