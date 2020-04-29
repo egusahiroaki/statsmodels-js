@@ -124,10 +124,7 @@ class RidgeRegression {
       unitMatrix(x[0].length, this._lambda)
     );
     const b = dot(transpose(x), this._y);
-    console.log(a);
-    console.log(b);
-    this._w = solve(a, b);
-    console.log(this._w); // intercept, coefficient
+    this._w = solve(a, b); // intercept, coefficient
 
     return this;
   }
