@@ -55,4 +55,18 @@ const hasEverySameArray = (a) => {
   return count === a.length - 1;
 };
 
-export { dot, transpose, hasEverySameArray };
+// like numpy.eye
+// n: Number of rows in the output
+const unitMatrix = (n) => {
+  let r = [];
+  for (let i = 0; i < n; i++) {
+    let e = [];
+    for (let j = 0; j < n; j++) {
+      e.push(i === j ? 1 : 0);
+    }
+    r.push(e);
+  }
+  return r;
+};
+
+export { dot, transpose, hasEverySameArray, unitMatrix };

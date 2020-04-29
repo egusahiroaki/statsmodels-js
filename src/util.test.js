@@ -1,4 +1,4 @@
-import { dot, transpose, hasEverySameArray } from "./util";
+import { dot, transpose, hasEverySameArray, unitMatrix } from "./util";
 
 describe("dot function", () => {
   test("one dimensional array", () => {
@@ -100,5 +100,25 @@ describe("hasEverySameArray function", () => {
     ];
     const expected = false;
     expect(hasEverySameArray(a)).toEqual(expected);
+  });
+});
+
+describe("unitMatrix", () => {
+  test("", () => {
+    const expected = [
+      [1, 0],
+      [0, 1],
+    ];
+    expect(unitMatrix(2)).toEqual(expected);
+  });
+
+  test("", () => {
+    const expected = [
+      [1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 1],
+    ];
+    expect(unitMatrix(4)).toEqual(expected);
   });
 });
