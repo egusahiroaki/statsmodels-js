@@ -7,6 +7,7 @@
     "prepare": "npm run build",
     "test": "jest",
     "test:c": "jest --coverage",
+    "lint": "npx eslint ./",
     "build": "npx webpack --config ./webpack.config.js --mode=production",
     "dev": "npx webpack --watch"
   },
