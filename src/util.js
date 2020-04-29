@@ -57,16 +57,36 @@ const hasEverySameArray = (a) => {
 
 // like numpy.eye
 // n: Number of rows in the output
-const unitMatrix = (n) => {
+// if v = 1 unitMatrix
+const unitMatrix = (n, v = 1) => {
   let r = [];
   for (let i = 0; i < n; i++) {
     let e = [];
     for (let j = 0; j < n; j++) {
-      e.push(i === j ? 1 : 0);
+      e.push(i === j ? v : 0);
     }
     r.push(e);
   }
   return r;
 };
 
-export { dot, transpose, hasEverySameArray, unitMatrix };
+// matrix add
+// a and b should be same rows and colmuns.
+const matrixAdd = (a, b) => {
+  // TODO assert
+  let r = [];
+  const rowNum = a.length;
+  const colNum = a[0].length;
+
+  for (let i = 0; i < rowNum; i++) {
+    let e = [];
+    for (let j = 0; j < colNum; j++) {
+      e.push(a[i][j] + b[i][j]);
+    }
+    r.push(e);
+  }
+
+  return r;
+};
+
+export { dot, transpose, hasEverySameArray, unitMatrix, matrixAdd };
