@@ -1213,7 +1213,6 @@ describe("MultipleLinearRegression", () => {
       ];
       const reg = new MultipleLinearRegression(x, y);
       reg.fit();
-      const expected = [[0.9999999999999787], [2.000000000000007]];
 
       expect(() => {
         reg.predict(predictX);
