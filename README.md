@@ -19,7 +19,7 @@ const x = [1, 2, 3];
 const y = [3, 5, 7];
 
 const result = new Stats.SimpleLinearRegression(x, y).fit();
-console.log(result.summary())
+result.summary()
 /*
 {
   r2Score: 0.9642857142857142,
@@ -27,6 +27,10 @@ console.log(result.summary())
   intercept: 0.3333333333333333
 }
 */
+
+// prediction
+result.predict([10, 20, 30]);
+// [ 21, 41, 61 ]
 ```
 
 ```javascript
@@ -39,8 +43,7 @@ const x = [
 const y = [30, 50, 70];
 
 const result = new Stats.MultipleLinearRegression(x, y).fit();
-console.log(result.summary());
-
+result.summary()
 /*
 {
   x1: -5.419270833334926,
@@ -50,4 +53,8 @@ console.log(result.summary());
   r2Score: 1
 }
 */
+
+// prediction
+result.predict([[10, 20, 30]]);
+// [ [ 29.999999999999545 ] ]
 ```
