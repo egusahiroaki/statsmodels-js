@@ -47,6 +47,9 @@ class MultipleLinearRegression {
     this._y = y;
     this._w = null;
 
+    // the number of variables
+    this._VAR_NUM = x[0].length;
+
     // check multi-colinearlity
     const t = transpose(this._x);
     this._hasMultiCo = hasEverySameArray(t);
@@ -86,6 +89,20 @@ class MultipleLinearRegression {
   predict(x) {
     if (typeof x[0][0] === "undefined") {
       x = [x];
+    }
+
+    // to check the x has same size elements
+    const inputVarNums = _.map(x, (e) => {
+      return e.length;
+    });
+
+    const isValid =
+      _.filter(inputVarNums, (e) => {
+        return e !== this._VAR_NUM;
+      }).length === 0;
+    // assert the number of variables
+    if (!isValid) {
+      throw new Error(`The number of variables should be ${this._VAR_NUM}`);
     }
     _.map(x, (e) => e.unshift(1));
     return dot(x, this._w);
