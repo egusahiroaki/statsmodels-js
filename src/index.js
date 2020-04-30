@@ -87,6 +87,7 @@ class MultipleLinearRegression {
   }
 
   predict(x) {
+    // check One-dimensional array
     if (typeof x[0][0] === "undefined") {
       x = [x];
     }
