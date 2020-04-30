@@ -54,7 +54,16 @@ result.summary()
 }
 */
 
-// prediction
-result.predict([[10, 20, 30]]);
-// [ [ 29.999999999999545 ] ]
+/* prediction case 1 */
+result.predict([10, 20, 30])
+// [[29.999999999999545]]
+
+/* prediction case 2 */
+result.predict([
+  [10, 20, 30],
+  [1, 2, 3],
+]);
+/*
+  [[29.999999999999545], [18.070312500000373]];
+*/
 ```
