@@ -1,12 +1,12 @@
 {
   "name": "statsmodels-js",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "basic statistics library.",
   "main": "dist/index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/egusahiroaki/statsmodels-js"
-	},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egusahiroaki/statsmodels-js"
+  },
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
