@@ -9,6 +9,7 @@ import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
 import jStat from "jstat";
+import { Vector } from "../lib/Vector";
 
 class SimpleLinearRegression {
   constructor(x, y) {
@@ -200,21 +201,13 @@ const chiSqaure = (a, b) => {
 
 // Chi-square test of independence of variables in a contingency table.
 const chi2Contingency = (a, b) => {
-  const expected = [];
-  for (let i = 0; i < a.length; i++) {
-    expected.push((a[i] + b[i]) / 2);
-  }
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+
+  const expected = vectorA.add(vectorB).divide(2);
   const statistic =
-    _.sum(
-      _.map(a, (e, i) => {
-        return Math.pow(e - expected[i], 2) / expected[i];
-      })
-    ) +
-    _.sum(
-      _.map(b, (e, i) => {
-        return Math.pow(e - expected[i], 2) / expected[i];
-      })
-    );
+    vectorA.substract(expected).pow(2).divideVec(expected).sum() +
+    vectorB.substract(expected).pow(2).divideVec(expected).sum();
 
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
