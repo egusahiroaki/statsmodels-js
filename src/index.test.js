@@ -2,6 +2,8 @@ import {
   SimpleLinearRegression,
   MultipleLinearRegression,
   RidgeRegression,
+  chiSqaure,
+  chi2Contingency,
 } from "./index";
 import _ from "lodash";
 
@@ -2290,5 +2292,39 @@ describe("RidgeRegression", () => {
       const expected = [[-31.995123945883126], [8.68141925883909]];
       expect(reg._w).toEqual(expected);
     });
+  });
+});
+
+describe("goodness-of-fit test", () => {
+  test("[10,1,1], [10,1,1]", () => {
+    const result = chiSqaure([10, 1, 1], [10, 1, 1]);
+    expect(result.statistic).toEqual(0);
+    expect(result.pValue).toEqual(1);
+  });
+
+  /*
+    import scipy
+    a = scipy.array([10,1,1,1])
+    b = scipy.array([15,1,1,1])
+    scipy.stats.chisquare(a, f_exp=b)
+  */
+  test("[10,1,1,1], [15,1,1,1]", () => {
+    const result = chiSqaure([10, 1, 1, 1], [15, 1, 1, 1]);
+    expect(result.statistic).toEqual(1.6666666666666667);
+    expect(result.pValue).toEqual(0.6443698056370236);
+  });
+});
+
+describe("test for independence", () => {
+  /*
+    import scipy
+    scipy.stats.chi2_contingency(np.array([[55, 22, 16, 7], [40, 32, 24, 4]]))
+    (6.63845472266525, 0.08435923449835014, 3, array([[47.5, 27. , 20. ,  5.5],
+        [47.5, 27. , 20. ,  5.5]]))
+  */
+  test("[55, 22, 16, 7], [40, 32, 24, 4]", () => {
+    const result = chi2Contingency([55, 22, 16, 7], [40, 32, 24, 4]);
+    expect(result.statistic).toEqual(6.63845472266525);
+    expect(result.pValue).toEqual(0.08435923449835192);
   });
 });
