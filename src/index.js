@@ -185,11 +185,9 @@ const tTest1Sample = (a, value) => {
 // goodness-of-fit test
 // The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
 const chiSqaure = (a, b) => {
-  const statistic = _.sum(
-    _.map(a, (e, i) => {
-      return Math.pow(e - b[i], 2) / b[i];
-    })
-  );
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+  const statistic = vectorA.substract(vectorB).pow(2).divideVec(vectorB).sum();
 
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
