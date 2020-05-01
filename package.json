@@ -3,6 +3,10 @@
   "version": "0.3.0",
   "description": "basic statistics library.",
   "main": "dist/index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/egusahiroaki/statsmodels-js"
+	},
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
@@ -35,5 +39,12 @@
     "prettier": "^2.0.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
-  }
+  },
+  "keywords": [
+    "statistics",
+    "test",
+    "descriptive",
+    "math",
+    "probability"
+  ]
 }
