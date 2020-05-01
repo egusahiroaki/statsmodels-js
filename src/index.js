@@ -15,16 +15,21 @@ class SimpleLinearRegression {
   constructor(x, y) {
     this._x = x;
     this._y = y;
+
+    this._vectorX = new Vector(x);
+    this._vectorY = new Vector(y);
   }
 
   fit() {
-    const n = this._x.length;
+    const n = this._vectorX.length();
     this.coef =
-      (dot(this._x, this._y) - (_.sum(this._y) * _.sum(this._x)) / n) /
-      (_.sum(_.map(this._x, (e) => e * e)) - Math.pow(_.sum(this._x), 2) / n);
+      (this._vectorX.dot(this._vectorY) -
+        (this._vectorX.sum() * this._vectorY.sum()) / n) /
+      (this._vectorX.multiplyVec(this._vectorX).sum() -
+        Math.pow(this._vectorX.sum(), 2) / n);
 
-    this.intercept = (_.sum(this._y) - this.coef * _.sum(this._x)) / n;
-
+    this.intercept =
+      (this._vectorY.sum() - this.coef * this._vectorX.sum()) / n;
     return this;
   }
 
