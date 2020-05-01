@@ -13,6 +13,53 @@ A JavaScript implementation of statistics methods.
 
 ## How to use
 
+### Statistical Test
+
+
+#### unpaired T-Test
+
+```javascript
+const Stats = require("statsmodels-js");
+
+// test assumes that the variances of both populations are equal.
+const result1 = Stats.tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5], true);
+/*
+  {
+    statistic: 2.2499999999999996,
+    se: 1.2649110640673518,
+    df: 8,
+    pValue: 0.054567305799939875
+  }
+*/
+
+// test doesn't assumes that the variances of both populations are equal.
+const result2 = Stats.tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5], false);
+/*
+  {
+    statistic: 2.2499999999999996,
+    se: 0.8,
+    df: 6.077151335311573,
+    pValue: 0.06488370852885418
+  }
+*/
+```
+
+#### T-test for the mean of ONE group of scores.
+
+```javascript
+const result = Stats.tTest1Sample([5, 5, 5, 5, 5, 5, 6, 10], 5.0);
+/*
+  {
+    mean: 5.75,
+    sd: 1.6393596310755,
+    statistic: 1.2104198771788937,
+    pValue: 0.26539803962501435
+  }
+*/
+```
+
+### Linear Regression
+
 ```javascript
 const Stats = require("statsmodels-js");
 const x = [1, 2, 3];
