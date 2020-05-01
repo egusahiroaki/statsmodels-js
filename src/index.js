@@ -8,6 +8,7 @@ import {
 import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
+import jStat from "jstat";
 
 class SimpleLinearRegression {
   constructor(x, y) {
@@ -154,4 +155,53 @@ class RidgeRegression {
   }
 }
 
-export { SimpleLinearRegression, MultipleLinearRegression, RidgeRegression };
+// goodness-of-fit test
+// The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
+const chiSqaure = (a, b) => {
+  const statistic = _.sum(
+    _.map(a, (e, i) => {
+      return Math.pow(e - b[i], 2) / b[i];
+    })
+  );
+
+  const df = ([a, b].length - 1) * (a.length - 1);
+  const pValue = 1 - jStat.chisquare.cdf(statistic, df);
+  return {
+    statistic: statistic,
+    pValue: pValue,
+  };
+};
+
+// Chi-square test of independence of variables in a contingency table.
+const chi2Contingency = (a, b) => {
+  const expected = [];
+  for (let i = 0; i < a.length; i++) {
+    expected.push((a[i] + b[i]) / 2);
+  }
+  const statistic =
+    _.sum(
+      _.map(a, (e, i) => {
+        return Math.pow(e - expected[i], 2) / expected[i];
+      })
+    ) +
+    _.sum(
+      _.map(b, (e, i) => {
+        return Math.pow(e - expected[i], 2) / expected[i];
+      })
+    );
+
+  const df = ([a, b].length - 1) * (a.length - 1);
+  const pValue = 1 - jStat.chisquare.cdf(statistic, df);
+  return {
+    statistic: statistic,
+    pValue: pValue,
+  };
+};
+
+export {
+  SimpleLinearRegression,
+  MultipleLinearRegression,
+  RidgeRegression,
+  chiSqaure,
+  chi2Contingency,
+};
