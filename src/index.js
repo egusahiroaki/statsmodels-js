@@ -167,8 +167,8 @@ const chiSqaure = (a, b) => {
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
   return {
-    statistic: statistic,
-    pValue: pValue,
+    statistic,
+    pValue,
   };
 };
 
@@ -193,8 +193,8 @@ const chi2Contingency = (a, b) => {
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
   return {
-    statistic: statistic,
-    pValue: pValue,
+    statistic,
+    pValue,
   };
 };
 
