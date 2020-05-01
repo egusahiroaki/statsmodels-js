@@ -188,21 +188,57 @@ const tTest1Sample = (a, value) => {
   };
 };
 
+// unpaired T test
 // Calculate the T-test for the means of two independent samples of scores.
+// https://www.statsdirect.co.uk/help/parametric_methods/utt.htm
 // https://github.com/scipy/scipy/blob/adc4f4f7bab120ccfab9383aba272954a0a12fb0/scipy/stats/stats.py#L5141-L5266
-const tTestInd = (a, b) => {
+const tTestInd = (a, b, equalVar = true) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
-  const se = Math.sqrt(
-    vectorA.unbiasedVar() / vectorA.length() +
-      vectorB.unbiasedVar() / vectorB.length()
-  );
-  const tStatictics = (vectorA.mean() - vectorB.mean()) / se;
-  const df = vectorA.length() + vectorB.length() - 2;
-  const pValue = jStat.ttest(tStatictics, df + 1, 2);
+
+  let tStatictic;
+  let df;
+  let se;
+  let pValue;
+
+  if (equalVar) {
+    df = vectorA.length() + vectorB.length() - 2;
+
+    // pooled variance
+    let sVar =
+      ((vectorA.length() - 1) * vectorA.unbiasedVar() +
+        (vectorB.length() - 1) * vectorB.unbiasedVar()) /
+      df;
+
+    se = Math.sqrt(sVar);
+    tStatictic =
+      (vectorA.mean() - vectorB.mean()) /
+      Math.sqrt(sVar * (1 / vectorA.length() + 1 / vectorB.length()));
+
+    pValue = jStat.ttest(tStatictic, df + 1, 2);
+  }
+
+  if (!equalVar) {
+    // variances are not same. Hence, variances should be used separately.
+    // https://en.wikipedia.org/wiki/Welch%27s_t-test
+    se = Math.sqrt(
+      vectorA.unbiasedVar() / vectorA.length() +
+        vectorB.unbiasedVar() / vectorB.length()
+    );
+
+    tStatictic = (vectorA.mean() - vectorB.mean()) / se;
+    const vA = vectorA.unbiasedVar() / vectorA.length();
+    const vB = vectorB.unbiasedVar() / vectorB.length();
+    df =
+      Math.pow(vA + vB, 2) /
+      (Math.pow(vA, 2) / (vectorA.length() - 1) +
+        Math.pow(vB, 2) / (vectorB.length() - 1));
+
+    pValue = jStat.ttest(tStatictic, df + 1, 2);
+  }
 
   return {
-    statistic: tStatictics,
+    statistic: tStatictic,
     se,
     df,
     pValue,

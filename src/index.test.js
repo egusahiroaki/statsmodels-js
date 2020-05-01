@@ -2324,13 +2324,13 @@ describe("tTest1Sample", () => {
 describe("tTestInd", () => {
   /*
     import scipy
-    scipy.stats.ttest_ind([4,5,6,4,5], [1,2,3,4,5])
+    scipy.stats.ttest_ind([4,5,6,4,5], [1,2,3,4,5], equal_var=True)
     # Ttest_indResult(statistic=2.2499999999999996, pvalue=0.05456730579993522)
   */
-  describe("[4,5,6,4,5], [1,2,3,4,5]", () => {
+  describe("[4,5,6,4,5], [1,2,3,4,5], equalVar true", () => {
     // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
-    const result = tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5]);
-    test("statistics", () => {
+    const result = tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5], true);
+    test("statistic", () => {
       expect(result.statistic).toEqual(2.2499999999999996);
     });
 
@@ -2339,21 +2339,37 @@ describe("tTestInd", () => {
     });
 
     test("se", () => {
-      expect(result.se).toEqual(0.8);
+      expect(result.se).toEqual(1.2649110640673518);
     });
 
     test("df", () => {
       expect(result.df).toEqual(8);
     });
+  });
 
-    // test("sd", () => {
-    //   expect(result.sd).toEqual(1.6393596310755);
-    // });
+  /*
+    import scipy
+    scipy.stats.ttest_ind([4,5,6,4,5], [1,2,3,4,5], equal_var=False)
+    # Ttest_indResult(statistic=2.2499999999999996, pvalue=0.06488370852883803)
+  */
+  describe("[4,5,6,4,5], [1,2,3,4,5], equalVar false", () => {
+    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
+    const result = tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5], false);
+    test("statistic", () => {
+      expect(result.statistic).toEqual(2.2499999999999996);
+    });
 
-    // test("result", () => {
-    //   expect(result.statistic).toEqual(1.2104198771788937);
-    //   expect(result.pValue).toEqual(0.26539803962501435);
-    // });
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.06488370852885418);
+    });
+
+    test("se", () => {
+      expect(result.se).toEqual(0.8);
+    });
+
+    test("df", () => {
+      expect(result.df).toEqual(6.077151335311573);
+    });
   });
 });
 
