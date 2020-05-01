@@ -34,7 +34,9 @@ class SimpleLinearRegression {
   }
 
   predict(x) {
-    return _.map(x, (e) => this.coef * e + this.intercept);
+    const vectorX = new Vector(x);
+    return vectorX.multiply(this.coef).add(this.intercept).values();
+    //_.map(x, (e) => this.coef * e + this.intercept);
   }
 
   summary() {
@@ -207,7 +209,7 @@ const chi2Contingency = (a, b) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
 
-  const expected = vectorA.add(vectorB).divide(2);
+  const expected = vectorA.addVec(vectorB).divide(2);
   const statistic =
     vectorA.substract(expected).pow(2).divideVec(expected).sum() +
     vectorB.substract(expected).pow(2).divideVec(expected).sum();
