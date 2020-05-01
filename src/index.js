@@ -155,6 +155,32 @@ class RidgeRegression {
   }
 }
 
+// Calculate the T-test for the mean of ONE group of scores.
+const tTest1Sample = (a, value) => {
+  const mean = _.sum(a) / a.length;
+  const sd = Math.sqrt(
+    _.sum(
+      _.map(a, (e) => {
+        return Math.pow(e - mean, 2);
+      })
+    ) / a.length
+  );
+
+  const df = a.length - 1;
+
+  // const statistic = jStat.tscore(value, a);
+  const statistic = (mean - value) / (sd / Math.sqrt(df));
+
+  // two sides
+  const pValue = jStat.ttest(statistic, a.length, 2);
+  return {
+    mean,
+    sd,
+    statistic,
+    pValue,
+  };
+};
+
 // goodness-of-fit test
 // The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
 const chiSqaure = (a, b) => {
@@ -202,6 +228,7 @@ export {
   SimpleLinearRegression,
   MultipleLinearRegression,
   RidgeRegression,
+  tTest1Sample,
   chiSqaure,
   chi2Contingency,
 };

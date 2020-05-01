@@ -2,6 +2,7 @@ import {
   SimpleLinearRegression,
   MultipleLinearRegression,
   RidgeRegression,
+  tTest1Sample,
   chiSqaure,
   chi2Contingency,
 } from "./index";
@@ -2291,6 +2292,30 @@ describe("RidgeRegression", () => {
       */
       const expected = [[-31.995123945883126], [8.68141925883909]];
       expect(reg._w).toEqual(expected);
+    });
+  });
+});
+
+describe("tTest1Sample", () => {
+  /*
+    import scipy
+    scipy.stats.ttest_1samp([5,5,5,5,5,5,6,10],5.0)
+    # Ttest_1sampResult(statistic=1.2104198771788934, pvalue=0.2653980394260696)
+  */
+  describe("([5, 5, 5, 5, 5, 5, 6, 10], 5.0)", () => {
+    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
+    const result = tTest1Sample([5, 5, 5, 5, 5, 5, 6, 10], 5.0);
+    test("mean", () => {
+      expect(result.mean).toEqual(5.75);
+    });
+
+    test("sd", () => {
+      expect(result.sd).toEqual(1.6393596310755);
+    });
+
+    test("result", () => {
+      expect(result.statistic).toEqual(1.2104198771788937);
+      expect(result.pValue).toEqual(0.26539803962501435);
     });
   });
 });
