@@ -193,9 +193,6 @@ const tTest1Sample = (a, value) => {
 const tTestInd = (a, b) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
-  console.log("vectorA.var(): " + vectorA.var());
-  console.log("vectorA.unbiasedVar(): " + vectorA.unbiasedVar());
-
   const se = Math.sqrt(
     vectorA.unbiasedVar() / vectorA.length() +
       vectorB.unbiasedVar() / vectorB.length()
