@@ -36,7 +36,6 @@ class SimpleLinearRegression {
   predict(x) {
     const vectorX = new Vector(x);
     return vectorX.multiply(this.coef).add(this.intercept).values();
-    //_.map(x, (e) => this.coef * e + this.intercept);
   }
 
   summary() {
@@ -189,6 +188,30 @@ const tTest1Sample = (a, value) => {
   };
 };
 
+// Calculate the T-test for the means of two independent samples of scores.
+// https://github.com/scipy/scipy/blob/adc4f4f7bab120ccfab9383aba272954a0a12fb0/scipy/stats/stats.py#L5141-L5266
+const tTestInd = (a, b) => {
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+  console.log("vectorA.var(): " + vectorA.var());
+  console.log("vectorA.unbiasedVar(): " + vectorA.unbiasedVar());
+
+  const se = Math.sqrt(
+    vectorA.unbiasedVar() / vectorA.length() +
+      vectorB.unbiasedVar() / vectorB.length()
+  );
+  const tStatictics = (vectorA.mean() - vectorB.mean()) / se;
+  const df = vectorA.length() + vectorB.length() - 2;
+  const pValue = jStat.ttest(tStatictics, df + 1, 2);
+
+  return {
+    statistic: tStatictics,
+    se,
+    df,
+    pValue,
+  };
+};
+
 // goodness-of-fit test
 // The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
 const chiSqaure = (a, b) => {
@@ -227,6 +250,7 @@ export {
   MultipleLinearRegression,
   RidgeRegression,
   tTest1Sample,
+  tTestInd,
   chiSqaure,
   chi2Contingency,
 };

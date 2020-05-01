@@ -3,6 +3,7 @@ import {
   MultipleLinearRegression,
   RidgeRegression,
   tTest1Sample,
+  tTestInd,
   chiSqaure,
   chi2Contingency,
 } from "./index";
@@ -2317,6 +2318,42 @@ describe("tTest1Sample", () => {
       expect(result.statistic).toEqual(1.2104198771788937);
       expect(result.pValue).toEqual(0.26539803962501435);
     });
+  });
+});
+
+describe("tTestInd", () => {
+  /*
+    import scipy
+    scipy.stats.ttest_ind([4,5,6,4,5], [1,2,3,4,5])
+    # Ttest_indResult(statistic=2.2499999999999996, pvalue=0.05456730579993522)
+  */
+  describe("[4,5,6,4,5], [1,2,3,4,5]", () => {
+    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
+    const result = tTestInd([4, 5, 6, 4, 5], [1, 2, 3, 4, 5]);
+    test("statistics", () => {
+      expect(result.statistic).toEqual(2.2499999999999996);
+    });
+
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.054567305799939875);
+    });
+
+    test("se", () => {
+      expect(result.se).toEqual(0.8);
+    });
+
+    test("df", () => {
+      expect(result.df).toEqual(8);
+    });
+
+    // test("sd", () => {
+    //   expect(result.sd).toEqual(1.6393596310755);
+    // });
+
+    // test("result", () => {
+    //   expect(result.statistic).toEqual(1.2104198771788937);
+    //   expect(result.pValue).toEqual(0.26539803962501435);
+    // });
   });
 });
 
