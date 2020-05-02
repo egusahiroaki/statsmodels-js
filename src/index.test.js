@@ -4,6 +4,7 @@ import {
   RidgeRegression,
   tTest1Sample,
   tTestInd,
+  tTestIndFromStats,
   chiSqaure,
   chi2Contingency,
 } from "./index";
@@ -2369,6 +2370,34 @@ describe("tTestInd", () => {
 
     test("df", () => {
       expect(result.df).toEqual(6.077151335311573);
+    });
+  });
+});
+
+describe("tTestIndFromStats", () => {
+  /*
+    import scipy
+    ttest_ind_from_stats(mean1=0.2, std1=np.sqrt(0.16), nobs1=150,
+    ...                      mean2=0.225, std2=np.sqrt(0.17437), nobs2=200)
+    # Ttest_indResult(statistic=-0.564327545549774, pvalue=0.5728947691244874)
+  */
+  describe("equalVar true", () => {
+    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
+    const result = tTestIndFromStats(
+      0.2,
+      Math.sqrt(0.16),
+      150,
+      0.225,
+      Math.sqrt(0.17437),
+      200,
+      true
+    );
+    test("statistic", () => {
+      expect(result.statistic).toEqual(-0.564327545549774);
+    });
+
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.572894755162566);
     });
   });
 });

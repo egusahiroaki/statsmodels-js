@@ -245,6 +245,46 @@ const tTestInd = (a, b, equalVar = true) => {
   };
 };
 
+// T-test for means of two independent samples from descriptive statistics.
+const tTestIndFromStats = (mean1, sd1, n1, mean2, sd2, n2, equalVar = true) => {
+  let tStatictic;
+  let df;
+  let se;
+  let pValue;
+
+  if (equalVar) {
+    df = n1 + n2 - 2;
+
+    // pooled variance
+    let sVar = ((n1 - 1) * Math.pow(sd1, 2) + (n2 - 1) * Math.pow(sd2, 2)) / df;
+
+    se = Math.sqrt(sVar);
+    tStatictic = (mean1 - mean2) / Math.sqrt(sVar * (1 / n1 + 1 / n2));
+
+    pValue = jStat.ttest(tStatictic, df + 1, 2);
+  }
+
+  if (!equalVar) {
+    // variances are not same. Hence, variances should be used separately.
+    // https://en.wikipedia.org/wiki/Welch%27s_t-test
+    se = Math.sqrt(sd1 / n1 + sd2 / n2);
+
+    tStatictic = (mean1 - mean2) / se;
+    const vA = Math.pow(sd1, 2) / n1;
+    const vB = Math.pow(sd2, 2) / n2;
+    df =
+      Math.pow(vA + vB, 2) /
+      (Math.pow(vA, 2) / (n1 - 1) + Math.pow(vB, 2) / (n2 - 1));
+
+    pValue = jStat.ttest(tStatictic, df + 1, 2);
+  }
+
+  return {
+    statistic: tStatictic,
+    pValue,
+  };
+};
+
 // goodness-of-fit test
 // The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
 const chiSqaure = (a, b) => {
@@ -284,6 +324,7 @@ export {
   RidgeRegression,
   tTest1Sample,
   tTestInd,
+  tTestIndFromStats,
   chiSqaure,
   chi2Contingency,
 };
