@@ -58,6 +58,48 @@ const result = Stats.tTest1Sample([5, 5, 5, 5, 5, 5, 6, 10], 5.0);
 */
 ```
 
+#### T-test for 2 related or repeated samples
+
+```javascript
+const result = tTestRel([4, 5, 6, 4, 5], [1, 2, 3, 4, 5]);
+/*
+  {
+    statistic: 2.449489742783178,
+    pValue: 0.07048399691022006
+  }
+*/
+```
+
+#### Chi-squared test
+
+goodness-of-fit test
+
+```javascript
+// goodness-of-fit test
+const result = chiSqaure([10, 1, 1, 1], [15, 1, 1, 1]);
+
+/*
+  {
+    statistic: 1.6666666666666667,
+    pValue: 0.6443698056370236
+  }
+*/
+```
+
+test for independence
+
+```javascript
+// goodness-of-fit test
+const result = chi2Contingency([55, 22, 16, 7], [40, 32, 24, 4]);
+
+/*
+  {
+    statistic: 6.63845472266525,
+    pValue: 0.08435923449835192
+  }
+*/
+```
+
 ### Linear Regression
 
 ```javascript
