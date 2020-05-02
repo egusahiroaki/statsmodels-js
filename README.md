@@ -100,6 +100,32 @@ const result = chi2Contingency([55, 22, 16, 7], [40, 32, 24, 4]);
 */
 ```
 
+#### One-Way ANOVA Test
+
+The one-way ANOVA tests the null hypothesis that two or more groups have the same population mean. 
+
+```javascript
+const a = [5, 6, 5, 5, 7];
+const b = [6, 6, 7, 5, 6];
+const result = Stats.oneWayANOVA(a, b);
+// { statistic: 0.6153846153846155, pValue: 0.45536634355271177 }
+```
+
+```javascript
+const a = [66, 62, 80, 50, 57, 68, 73, 65];
+const b = [62, 60, 66, 63, 55, 53, 59, 63];
+const c = [65, 60, 78, 52, 59, 66, 73, 64];
+const d = [52, 59, 44, 67, 47, 53, 58, 49];
+const result = oneWayANOVA(a, b, c, d);
+/*
+  {
+    statistic: 4.024870903151017,
+    pValue: 0.01685989800789034
+  }
+*/
+```
+
+
 ### Linear Regression
 
 ```javascript
