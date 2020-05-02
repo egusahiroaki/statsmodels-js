@@ -5,6 +5,7 @@ import {
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
+  tTestRel,
   chiSqaure,
   chi2Contingency,
 } from "./index";
@@ -2382,7 +2383,6 @@ describe("tTestIndFromStats", () => {
     # Ttest_indResult(statistic=-0.564327545549774, pvalue=0.5728947691244874)
   */
   describe("equalVar true", () => {
-    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
     const result = tTestIndFromStats(
       0.2,
       Math.sqrt(0.16),
@@ -2398,6 +2398,24 @@ describe("tTestIndFromStats", () => {
 
     test("pValue", () => {
       expect(result.pValue).toEqual(0.572894755162566);
+    });
+  });
+});
+
+describe("tTestRel", () => {
+  /*
+    import scipy
+    scipy.stats.ttest_rel([4,5,6,4,5], [1,2,3,4,5])
+    # Ttest_relResult(statistic=2.449489742783178, pvalue=0.07048399691021993)
+  */
+  describe("", () => {
+    const result = tTestRel([4, 5, 6, 4, 5], [1, 2, 3, 4, 5]);
+    test("statistic", () => {
+      expect(result.statistic).toEqual(2.449489742783178);
+    });
+
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.07048399691022006);
     });
   });
 });

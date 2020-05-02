@@ -285,6 +285,24 @@ const tTestIndFromStats = (mean1, sd1, n1, mean2, sd2, n2, equalVar = true) => {
   };
 };
 
+//Calculate the t-test on TWO RELATED samples of scores, a and b.
+const tTestRel = (a, b) => {
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+  const df = vectorA.length() - 1;
+  const diffVec = vectorA.substract(vectorB);
+  const mean = diffVec.mean();
+  const uv = diffVec.unbiasedVar();
+  const denom = Math.sqrt(uv / vectorA.length());
+
+  const tStatictic = mean / denom;
+  const pValue = jStat.ttest(tStatictic, df + 1, 2);
+  return {
+    statistic: tStatictic,
+    pValue,
+  };
+};
+
 // goodness-of-fit test
 // The chi-square test tests the null hypothesis that the categorical data has the given frequencies.
 const chiSqaure = (a, b) => {
@@ -325,6 +343,7 @@ export {
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
+  tTestRel,
   chiSqaure,
   chi2Contingency,
 };
