@@ -8,6 +8,7 @@ import {
   tTestRel,
   chiSqaure,
   chi2Contingency,
+  oneWayANOVA,
 } from "./index";
 import _ from "lodash";
 
@@ -2451,5 +2452,27 @@ describe("test for independence", () => {
     const result = chi2Contingency([55, 22, 16, 7], [40, 32, 24, 4]);
     expect(result.statistic).toEqual(6.63845472266525);
     expect(result.pValue).toEqual(0.08435923449835192);
+  });
+});
+
+describe("oneWayANOVA", () => {
+  /*
+  import scipy
+  a = np.array([66, 62, 80, 50, 57, 68, 73, 65])
+  b = np.array([62, 60, 66, 63, 55, 53, 59, 63])
+  c = np.array([65, 60, 78, 52, 59, 66, 73, 64])
+  d = np.array([52, 59, 44, 67, 47, 53, 58, 49])
+  scipy.stats.f_oneway(a,b,c,d) 
+  # F_onewayResult(statistic=4.024870903151017, pvalue=0.016859897941251333)
+  */
+
+  test("[55, 22, 16, 7], [40, 32, 24, 4]", () => {
+    const a = [66, 62, 80, 50, 57, 68, 73, 65];
+    const b = [62, 60, 66, 63, 55, 53, 59, 63];
+    const c = [65, 60, 78, 52, 59, 66, 73, 64];
+    const d = [52, 59, 44, 67, 47, 53, 58, 49];
+    const result = oneWayANOVA(a, b, c, d);
+    expect(result.statistic).toEqual(4.024870903151017);
+    expect(result.pValue).toEqual(0.01685989800789034);
   });
 });

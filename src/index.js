@@ -290,7 +290,7 @@ const tTestRel = (a, b) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
   const df = vectorA.length() - 1;
-  const diffVec = vectorA.substract(vectorB);
+  const diffVec = vectorA.substractVec(vectorB);
   const mean = diffVec.mean();
   const uv = diffVec.unbiasedVar();
   const denom = Math.sqrt(uv / vectorA.length());
@@ -308,7 +308,11 @@ const tTestRel = (a, b) => {
 const chiSqaure = (a, b) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
-  const statistic = vectorA.substract(vectorB).pow(2).divideVec(vectorB).sum();
+  const statistic = vectorA
+    .substractVec(vectorB)
+    .pow(2)
+    .divideVec(vectorB)
+    .sum();
 
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
@@ -325,13 +329,42 @@ const chi2Contingency = (a, b) => {
 
   const expected = vectorA.addVec(vectorB).divide(2);
   const statistic =
-    vectorA.substract(expected).pow(2).divideVec(expected).sum() +
-    vectorB.substract(expected).pow(2).divideVec(expected).sum();
+    vectorA.substractVec(expected).pow(2).divideVec(expected).sum() +
+    vectorB.substractVec(expected).pow(2).divideVec(expected).sum();
 
   const df = ([a, b].length - 1) * (a.length - 1);
   const pValue = 1 - jStat.chisquare.cdf(statistic, df);
   return {
     statistic,
+    pValue,
+  };
+};
+
+// The one-way ANOVA tests the null hypothesis that two or more groups have the same population mean
+const oneWayANOVA = (...args) => {
+  const GroupNum = args.length;
+  let allDataVec = new Vector(args.flat());
+  const bign = allDataVec.length();
+  const offset = allDataVec.mean();
+  allDataVec = allDataVec.substract(offset);
+  const sstot = allDataVec.pow(2).sum() - Math.pow(allDataVec.sum(), 2) / bign;
+  let ssbn = 0;
+  _.each(args, (e) => {
+    const v = new Vector(e);
+    ssbn += Math.pow(v.substract(offset).sum(), 2) / v.length();
+  });
+  ssbn -= Math.pow(allDataVec.sum(), 2) / bign;
+  const sswn = sstot - ssbn;
+  const dfbn = GroupNum - 1;
+  const dfwn = bign - GroupNum;
+  const msb = ssbn / dfbn;
+  const msw = sswn / dfwn;
+  const fStatistic = msb / msw;
+
+  // TODO
+  const pValue = jStat.anovaftest(...args);
+  return {
+    statistic: fStatistic,
     pValue,
   };
 };
@@ -346,4 +379,5 @@ export {
   tTestRel,
   chiSqaure,
   chi2Contingency,
+  oneWayANOVA,
 };
