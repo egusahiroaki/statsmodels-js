@@ -75,7 +75,6 @@ const result = tTestRel([4, 5, 6, 4, 5], [1, 2, 3, 4, 5]);
 goodness-of-fit test
 
 ```javascript
-// goodness-of-fit test
 const result = chiSqaure([10, 1, 1, 1], [15, 1, 1, 1]);
 
 /*
@@ -89,7 +88,6 @@ const result = chiSqaure([10, 1, 1, 1], [15, 1, 1, 1]);
 test for independence
 
 ```javascript
-// goodness-of-fit test
 const result = chi2Contingency([55, 22, 16, 7], [40, 32, 24, 4]);
 
 /*
