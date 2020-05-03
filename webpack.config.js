@@ -1,7 +1,7 @@
 module.exports = {
   mode: "development",
   devtool: "source-map",
-  entry: ["@babel/polyfill", "./src/index.js"],
+  entry: ["./src/index.js"],
   output: {
     path: `${__dirname}/dist`,
     filename: "index.js",
