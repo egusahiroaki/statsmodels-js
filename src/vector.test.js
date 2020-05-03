@@ -1,4 +1,4 @@
-import { Vector } from "./Vector";
+import Vector from "./Vector";
 
 describe("Vector", () => {
   describe("add", () => {
