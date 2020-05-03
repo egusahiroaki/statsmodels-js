@@ -9,7 +9,7 @@ import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
 import jStat from "jstat";
-import { Vector } from "../lib/Vector";
+import { Vector } from "./lib/Vector";
 
 class SimpleLinearRegression {
   constructor(x, y) {
