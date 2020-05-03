@@ -11,7 +11,7 @@ import {
 import _ from "lodash";
 import { solve } from "./linalg";
 import { r2Score } from "./metrics";
-import Vector from "./vector";
+import Vector from "../lib/vector";
 import jStat from "jstat";
 
 class SimpleLinearRegression {
