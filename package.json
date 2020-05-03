@@ -18,10 +18,13 @@
   "author": "egusahiroaki",
   "license": "MIT",
   "dependencies": {
+    "core-js": "^3.6.5",
     "eslint": "^6.8.0",
+    "install": "^0.13.0",
     "jstat": "^1.9.3",
     "lodash": "^4.17.15",
     "mathjs": "^6.6.4",
+    "npm": "^6.14.4",
     "svd-js": "^1.0.6"
   },
   "devDependencies": {
