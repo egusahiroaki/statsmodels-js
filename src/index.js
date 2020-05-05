@@ -170,8 +170,8 @@ const descripeStats = (array) => {
   const v = new Vector(array);
   return {
     size: v.length(),
-    min: _.min(v.values()),
-    max: _.max(v.values()),
+    min: v.min(),
+    max: v.max(),
     mean: v.mean(),
     se: v.sem(),
     variance: v.unbiasedVar(), // unbiased
