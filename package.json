@@ -1,6 +1,6 @@
 {
   "name": "statsmodels-js",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "basic statistics library.",
   "main": "dist/index.js",
   "repository": {
