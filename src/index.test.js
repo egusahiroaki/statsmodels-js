@@ -2,6 +2,7 @@ import {
   SimpleLinearRegression,
   MultipleLinearRegression,
   RidgeRegression,
+  descripeStats,
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
@@ -2296,6 +2297,45 @@ describe("RidgeRegression", () => {
       */
       const expected = [[-31.995123945883126], [8.68141925883909]];
       expect(reg._w).toEqual(expected);
+    });
+  });
+});
+
+describe("describeStats", () => {
+  /*
+    import scipy
+    scipy.stats.ttest_1samp([5,5,5,5,5,5,6,10],5.0)
+    # Ttest_1sampResult(statistic=1.2104198771788934, pvalue=0.2653980394260696)
+  */
+  describe("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", () => {
+    // np.mean([5, 5, 5, 5, 5, 5, 6, 10])
+    const result = descripeStats([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    test("size", () => {
+      expect(result.size).toEqual(10);
+    });
+
+    test("min", () => {
+      expect(result.min).toEqual(0);
+    });
+
+    test("max", () => {
+      expect(result.max).toEqual(9);
+    });
+
+    test("mean", () => {
+      expect(result.mean).toEqual(4.5);
+    });
+
+    test("variance", () => {
+      expect(result.variance).toEqual(9.166666666666666);
+    });
+
+    test("skewness", () => {
+      expect(result.skewness).toEqual(0);
+    });
+
+    test("kurtosis", () => {
+      expect(result.kurtosis).toEqual(-1.2000000000000002);
     });
   });
 });
