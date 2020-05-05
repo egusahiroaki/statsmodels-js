@@ -2335,7 +2335,7 @@ describe("describeStats", () => {
     });
 
     test("kurtosis", () => {
-      expect(result.kurtosis).toEqual(-1.2000000000000002);
+      expect(result.kurtosis).toEqual(-1.2);
     });
   });
 });
