@@ -13,6 +13,25 @@ A JavaScript implementation of statistics methods.
 
 ## How to use
 
+### Statistics Detail
+
+```javascript
+const result = Stats.descripeStats([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+/*
+{
+  size: 10,
+  min: 0,
+  max: 9,
+  mean: 4.5,
+  se: 0.9082951062292475,
+  variance: 9.166666666666666,
+  skewness: 0,
+  kurtosis: -1.2
+}
+*/
+```
+
 ### Statistical Test
 
 
