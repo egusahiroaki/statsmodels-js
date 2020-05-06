@@ -3,6 +3,7 @@ import {
   MultipleLinearRegression,
   RidgeRegression,
   descripeStats,
+  pearsonr,
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
@@ -2336,6 +2337,18 @@ describe("describeStats", () => {
 
     test("kurtosis", () => {
       expect(result.kurtosis).toEqual(-1.2);
+    });
+  });
+});
+
+describe("pearsonr", () => {
+  describe("", () => {
+    const a = [0, 0, 0, 1, 1, 1, 1];
+    const b = [0, 1, 2, 3, 4, 5, 6];
+    const result = pearsonr(a, b);
+
+    test("r", () => {
+      expect(result.r).toEqual(0.8660254037844386);
     });
   });
 });

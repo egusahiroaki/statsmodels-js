@@ -180,6 +180,28 @@ const descripeStats = (array) => {
   };
 };
 
+// Pearson correlation coefficient and p-value for testing non-correlation.
+// https://ja.wikipedia.org/wiki/%E7%9B%B8%E9%96%A2%E4%BF%82%E6%95%B0
+const pearsonr = (a, b) => {
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+  const aMean = vectorA.mean();
+  const bMean = vectorB.mean();
+  const x = vectorA
+    .substract(aMean)
+    .multiplyVec(vectorB.substract(bMean))
+    .sum();
+
+  const y = Math.sqrt(
+    vectorA.substract(aMean).pow(2).sum() *
+      vectorB.substract(bMean).pow(2).sum()
+  );
+
+  return {
+    r: x / y,
+  };
+};
+
 // Calculate the T-test for the mean of ONE group of scores.
 const tTest1Sample = (a, value) => {
   const mean = _.sum(a) / a.length;
@@ -392,6 +414,7 @@ export {
   MultipleLinearRegression,
   RidgeRegression,
   descripeStats,
+  pearsonr,
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
