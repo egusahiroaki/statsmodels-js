@@ -2342,13 +2342,29 @@ describe("describeStats", () => {
 });
 
 describe("pearsonr", () => {
-  describe("", () => {
+  describe("case 1", () => {
     const a = [0, 0, 0, 1, 1, 1, 1];
     const b = [0, 1, 2, 3, 4, 5, 6];
     const result = pearsonr(a, b);
 
     test("r", () => {
       expect(result.r).toEqual(0.8660254037844386);
+    });
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.011724811003882547);
+    });
+  });
+
+  describe("case 2", () => {
+    const a = [2, 3, 5, 6, 3, 4, 7, 5];
+    const b = [4, 3, 8, 7, 5, 4, 8, 9];
+    const result = pearsonr(a, b);
+
+    test("r", () => {
+      expect(result.r).toEqual(0.785081015728862);
+    });
+    test("pValue", () => {
+      expect(result.pValue).toEqual(0.020989440024479375);
     });
   });
 });

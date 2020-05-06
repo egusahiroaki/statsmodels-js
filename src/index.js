@@ -196,9 +196,15 @@ const pearsonr = (a, b) => {
     vectorA.substract(aMean).pow(2).sum() *
       vectorB.substract(bMean).pow(2).sum()
   );
+  const r = x / y;
+  const tStatistic =
+    (r * Math.sqrt(vectorA.length() - 2)) / Math.sqrt(1 - Math.pow(r, 2));
 
+  // sample size shouled be actual number - 1
+  const pValue = jStat.ttest(tStatistic, vectorA.length() - 1, 2);
   return {
-    r: x / y,
+    r,
+    pValue,
   };
 };
 
