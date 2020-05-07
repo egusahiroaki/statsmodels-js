@@ -13,9 +13,13 @@ A JavaScript implementation of statistics methods.
 
 ## How to use
 
-### Statistics Detail
+### Statistics
+
+basic statistical summary
 
 ```javascript
+const Stats = require("statsmodels-js");
+
 const result = Stats.descripeStats([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
 /*
@@ -28,6 +32,25 @@ const result = Stats.descripeStats([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   variance: 9.166666666666666,
   skewness: 0,
   kurtosis: -1.2
+}
+*/
+```
+
+### Correlation
+
+Pearson correlation coefficient
+
+```javascript
+const Stats = require("statsmodels-js");
+
+const a = [0, 0, 0, 1, 1, 1, 1];
+const b = [0, 1, 2, 3, 4, 5, 6];
+const result = Stats.pearsonr(a, b);
+
+/*
+{
+  r: 0.8660254037844386
+  pValue: 0.011724811003882547
 }
 */
 ```
