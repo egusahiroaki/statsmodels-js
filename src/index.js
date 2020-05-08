@@ -208,6 +208,12 @@ const pearsonr = (a, b) => {
   };
 };
 
+const cosSimilarity = (a, b) => {
+  const vectorA = new Vector(a);
+  const vectorB = new Vector(b);
+  return vectorA.dot(vectorB) / (vectorA.norm() * vectorB.norm());
+};
+
 // Calculate the T-test for the mean of ONE group of scores.
 const tTest1Sample = (a, value) => {
   const mean = _.sum(a) / a.length;
@@ -421,6 +427,7 @@ export {
   RidgeRegression,
   descripeStats,
   pearsonr,
+  cosSimilarity,
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,

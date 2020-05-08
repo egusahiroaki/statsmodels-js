@@ -4,6 +4,7 @@ import {
   RidgeRegression,
   descripeStats,
   pearsonr,
+  cosSimilarity,
   tTest1Sample,
   tTestInd,
   tTestIndFromStats,
@@ -2337,6 +2338,27 @@ describe("describeStats", () => {
 
     test("kurtosis", () => {
       expect(result.kurtosis).toEqual(-1.2);
+    });
+  });
+});
+describe("consSimilarity", () => {
+  describe("", () => {
+    test("", () => {
+      const a = [1, 1];
+      const b = [0, 1];
+      expect(cosSimilarity(a, b)).toEqual(0.7071067811865475);
+    });
+
+    test("", () => {
+      const a = [1, 0];
+      const b = [0, 1];
+      expect(cosSimilarity(a, b)).toEqual(0);
+    });
+
+    test("", () => {
+      const a = [1, 1];
+      const b = [1, 1];
+      expect(cosSimilarity(a, b)).toEqual(0.9999999999999998);
     });
   });
 });
