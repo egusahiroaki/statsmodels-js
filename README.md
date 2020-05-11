@@ -55,6 +55,22 @@ const result = Stats.pearsonr(a, b);
 */
 ```
 
+### Similarity
+
+```javascript
+const Stats = require("statsmodels-js");
+
+const a = [1, 1];
+const b = [0, 1];
+const result1 = Stats.cosSimilarity(a, b);
+// 0.7071067811865475
+
+const a = [1, 1];
+const b = [1, 1];
+const result2 = Stats.cosSimilarity(a, b);
+// 1
+```
+
 ### Statistical Test
 
 
