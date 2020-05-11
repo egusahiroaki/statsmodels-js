@@ -211,6 +211,7 @@ const pearsonr = (a, b) => {
 const cosSimilarity = (a, b) => {
   const vectorA = new Vector(a);
   const vectorB = new Vector(b);
+  if (vectorA.isEqualTo(b)) return 1;
   return vectorA.dot(vectorB) / (vectorA.norm() * vectorB.norm());
 };
 

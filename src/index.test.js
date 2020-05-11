@@ -2358,7 +2358,7 @@ describe("consSimilarity", () => {
     test("", () => {
       const a = [1, 1];
       const b = [1, 1];
-      expect(cosSimilarity(a, b)).toEqual(0.9999999999999998);
+      expect(cosSimilarity(a, b)).toEqual(1);
     });
   });
 });
