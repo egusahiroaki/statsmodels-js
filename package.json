@@ -23,7 +23,7 @@
     "install": "^0.13.0",
     "jstat": "^1.9.3",
     "lodash": "^4.17.15",
-    "mathjs": "^6.6.4",
+    "mathjs": "^7.5.1",
     "npm": "^6.14.4",
     "regenerator-runtime": "^0.13.5",
     "svd-js": "^1.0.6"
